@@ -25,7 +25,7 @@ Comprobamos que el nombre de host estático se ha guardado correctamente:
 hostnamectl
 ```
 
-![Hostnamectl](./hostnamectl.png)
+![Hostnamectl](/img/hostnamectl.png)
 
 ---
 
@@ -63,7 +63,7 @@ Verificamos mediante el comando `ip a` que la máquina tiene asignada la IP corr
 ip a
 ```
 
-![Dirección IP](./ip_a.png)
+![Dirección IP](/img/ip_a.png)
 
 ---
 
@@ -144,4 +144,4 @@ Realizamos la consulta LDAP para comprobar que el usuario `jperez` se ha creado 
 ldapsearch -x -b "dc=planetafp,dc=local" -s sub "(uid=jperez)"
 ```
 
-![Búsqueda LDAP](./ulta-s_sub_uid=jperez.png)
+![Búsqueda LDAP](/img/-s_sub_uid=jperez.png)
