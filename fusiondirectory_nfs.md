@@ -46,10 +46,9 @@ getent passwd
 getent group
 ```
 
-> **📸 Evidencias fotográficas recomendadas (Capturas de pantalla):**
->
-> * **Captura 1:** Terminal ejecutando `sudo systemctl status slapd` con el servicio activo (`active (running)`).
-> * **Captura 2:** Salida de los comandos `getent passwd` y `getent group` mostrando los usuarios y grupos importados desde OpenLDAP.
+> !(/img/captura1.png)
+> !(/img/captura2_1.png)
+> !(/img/captura2_2.png)
 
 ---
 
@@ -96,10 +95,7 @@ sudo exportfs -ra
 sudo systemctl restart nfs-kernel-server
 ```
 
-> **📸 Evidencias fotográficas recomendadas (Capturas de pantalla):**
->
-> * **Captura 3:** Visualización del fichero `/etc/exports` con la configuración de la red.
-> * **Captura 4:** Comprobación del registro de exportación activo mediante `cat /proc/fs/nfsd/exports` o `sudo exportfs -v`.
+> !(/img/captura3.png)
 
 ---
 
@@ -136,7 +132,4 @@ touch /mnt/test_prohibido.txt
 
 * **Resultado esperado:** El sistema deniega la acción devolviendo el error `Permission denied`.
 
-> **📸 Evidencias fotográficas recomendadas (Capturas de pantalla):**
->
-> * **Captura 5:** Intento de escritura fallido con el usuario no autorizado mostrando claramente el error `Permission denied`.
-> * **Captura 6:** Creación exitosa del fichero `test_autorizado.txt` ejecutado desde el contexto del usuario permitido.
+> !(/img/captura4.png)
