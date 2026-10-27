@@ -46,9 +46,9 @@ getent passwd
 getent group
 ```
 
-> !(/img/captura1.png)
-> !(/img/captura2_1.png)
-> !(/img/captura2_2.png)
+> ![captura1](/img/captura1.png)
+> ![captura2_1](/img/captura2_1.png)
+> ![captura2_2](/img/captura2_2.png)
 
 ---
 
@@ -95,7 +95,7 @@ sudo exportfs -ra
 sudo systemctl restart nfs-kernel-server
 ```
 
-> !(/img/captura3.png)
+> ![captura3](/img/captura3.png)
 
 ---
 
@@ -132,4 +132,4 @@ touch /mnt/test_prohibido.txt
 
 * **Resultado esperado:** El sistema deniega la acción devolviendo el error `Permission denied`.
 
-> !(/img/captura4.png)
+> ![captura4](/img/captura4.png)
