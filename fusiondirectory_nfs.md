@@ -1,9 +1,4 @@
 # Manual de Operaciones: Integración de FusionDirectory, OpenLDAP y Servidor NFS
-
-* **Asignatura:** Administración de Sistemas Operativos
-* **Sistema Operativo:** Debian (Trixie/Bookworm)
-* **Servicios:** Apache2, PHP, OpenLDAP (`slapd`), SSSD/NSS, NFS Kernel Server
-
 ---
 
 ## Resolución de Incidencias Técnicas (Troubleshooting)
