@@ -73,7 +73,9 @@ Se hace desde `root@tmqdmb`, una línea cada vez.
 aa-status | head -20
 ```
 
-Debe decir "apparmor module is loaded" y listar `lxc-101` a `lxc-107` en enforce.
+Debe decir "apparmor module is loaded" y listar `lxc-101` a `lxc-107` en enforce. Así salió el 13 de noviembre de 2026:
+
+![Salida de aa-status: 126 perfiles cargados, 27 en enforce y los perfiles lxc-101 a lxc-107](imagenes/01-aa-status.png)
 
 **Que ningún contenedor esté sin protección y todos sin privilegios**
 
@@ -81,13 +83,19 @@ Debe decir "apparmor module is loaded" y listar `lxc-101` a `lxc-107` en enforce
 for i in 101 102 103 104 105 106 107; do echo "CT$i: $(grep -E '^lxc.apparmor|^unprivileged' /etc/pve/lxc/$i.conf | sort -u | tr '\n' ' ')"; done
 ```
 
-Cada línea debe enseñar solo `unprivileged: 1`. Si sale `lxc.apparmor.profile: unconfined`, hay un problema.
+Cada línea debe enseñar solo `unprivileged: 1`. Si sale `lxc.apparmor.profile: unconfined`, hay un problema. Así salió el 13 de noviembre de 2026 (los siete solo con `unprivileged: 1`, sin ninguna línea `lxc.apparmor.*`):
+
+![Los siete contenedores sin privilegios y sin líneas lxc.apparmor](imagenes/02-sin-privilegios.png)
 
 **Nesting (debe salir `nesting=1` en los siete)**
 
 ```bash
 for i in 101 102 103 104 105 106 107; do echo "CT$i: $(pct config $i | grep -E '^features')"; done
 ```
+
+Así salió el 13 de noviembre de 2026 (`nesting=1` en los siete):
+
+![Los siete contenedores con nesting=1](imagenes/03-nesting.png)
 
 **Bloqueos recientes**
 
@@ -96,6 +104,10 @@ journalctl -k --since "7 days ago" | grep -i 'apparmor="DENIED"' | tail -20
 ```
 
 Si no sale nada, no ha habido bloqueos esta semana. Los de `lxc-start` (`vgs`, `lvs`) al arrancar el nodo son ruido conocido y los ignoramos.
+
+En la captura del 13 de noviembre de 2026 solo salen bloqueos de ese tipo: `profile="/usr/bin/lxc-start"` con `comm="vgs"` y `comm="lvs"` (herramientas de LVM que se lanzan al arrancar). Los de las 16:34 del 10 de noviembre son del arranque del nodo y los de las 17:19 del 13 de noviembre salen al arrancar un contenedor durante la prueba del CT105. Ninguno es de un perfil `lxc-101` a `lxc-107`.
+
+![Bloqueos de los últimos 7 días: solo lxc-start con vgs y lvs](imagenes/04-bloqueos-recientes.png)
 
 ## 6. Qué hacer si algo se bloquea
 
